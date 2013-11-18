@@ -32,6 +32,8 @@ cgi_wrappermode: 0755
 cgi_overload_delay: ''
 # message to display when overloaded (may contain html)
 cgi_overload_message: ''
+# enable optimization of only refreshing committed changes?
+only_committed_changes: 0
 # rcs backend to use
 rcs: git
 # plugins to add to the default configuration
@@ -121,6 +123,9 @@ timezone: GMT
 wiki_file_chars: -[:alnum:]+/.:_
 # allow symlinks in the path leading to the srcdir (potentially insecure)
 allow_symlinks_before_srcdir: 0
+# cookie control
+cookiejar:
+  file: /home/b-myrepos/.ikiwiki/cookies
 
 ######################################################################
 # core plugins
@@ -303,8 +308,8 @@ po_link_to: default
 
 ######################################################################
 # web plugins
-#   (404, attachment, comments, editdiff, edittemplate, google, goto,
-#    mirrorlist, remove, rename, repolist, search, theme, userlist,
+#   (404, attachment, comments, editdiff, edittemplate, getsource, google,
+#    goto, mirrorlist, remove, rename, repolist, search, theme, userlist,
 #    websetup, wmd)
 ######################################################################
 
@@ -327,6 +332,12 @@ comments_pagename: comment_
 #comments_allowauthor: 0
 # commit comments to the VCS
 comments_commit: 1
+# Restrict formats for comments to (no restriction if empty)
+comments_allowformats: ''
+
+# getsource plugin
+# Mime type for returned source.
+#getsource_mimetype: text/plain; charset=utf-8
 
 # mirrorlist plugin
 # list of mirrors
@@ -343,6 +354,8 @@ repositories:
 # search plugin
 # path to the omega cgi program
 omega_cgi: /usr/lib/cgi-bin/omega/omega
+# use google site search rather than internal xapian index?
+google_search: 1
 
 # theme plugin
 # name of theme to enable
@@ -424,9 +437,6 @@ directive_description_dir: ikiwiki/directive
 aggregateinternal: 1
 # allow aggregation to be triggered via the web?
 #aggregate_webtrigger: 0
-# cookie control
-cookiejar:
-  file: /home/b-myrepos/.ikiwiki/cookies
 
 # autoindex plugin
 # commit autocreated index pages
